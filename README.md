@@ -283,6 +283,33 @@ Ubuntu/Debian下使用 ： apt-get install git -y不会安装啊？我也不知�
 <h2 id="其他">其他</h2>
 
 <p>请勿违反国家法律法规，否则后果自负！<br />
+     其实对于熟悉v2ray设置和Linux操作的网友，完全可以在使用233boy脚本安装了v2ray服务端后修改配置文件 /etc/v2ray/config.json取消屏蔽。这里主要是介绍给小白或不太熟悉上述两者的网友。
+
+1.注册github帐号，比如为abc123，然后登录。
+
+2.访问233boy的代码仓库https://github.com/233boy/v2ray，先点击左侧的“Branch:rm”，在下拉选项列表中勾选“master”，然后再点击右上角的“fork”按钮，该操作会将其脚本克隆到你帐号下的代码仓库中。
+
+3.fork过来后，访问https://github.com/abc123/v2ray就可以看到这个脚本，abc123要换成你的具体帐号。
+
+4.依次点击文件夹config--->server--->include找到 ban.json文件，点击该文件，再点击文件上方的小铅笔图标，对文件内容进行修改。
+
+5.改成如下格式即可，一定要保留一个域名，否则最后生成的配置文件会少一段，导致搭建的v2ray无法翻墙。改完之后，点击下面的“Commit changes”按钮保存。
+{
+                "type": "field",
+                "domain": [
+                    "domain:360.com"
+                ],
+                "outboundTag": "blocked"
+ }
+
+6.按如下命令在服务段安装v2ray(注意，最后一条命令左斜杠前面有个点，别复制漏了)，另外abc123要换成你的具体帐号。如果提示git命令找不到，请看解决233blog网站v2ray一键安装脚本屏蔽网站问题(1)。
+
+git clone https://github.com/abc123/v2ray -b master
+cd v2ray
+chmod +x install.sh
+./install.sh local
+
+7.这种方式的好处就是，以后233boy那再玩什么新花样，也不会影响到你。因为现在你用的是你代码仓库中的脚本来安装v2ray的。
 使用一键脚本并不会害了你，并且会让你节省大量的时间，工具从来都是为了更快的解决问题。</p>
 
 <p><img src="https://affpass.com/ga?ga=v2ray&amp;dt=github.wiki.1&amp;dr=&amp;ul=zh-CN&amp;sd=24-bit&amp;sr=&amp;vp=&amp;z=0&amp;dl=/github/1" alt="" /></p>
